@@ -3,15 +3,20 @@
 #include<PID_v1.h>
 
 
-const int servoPin = 9;                                              //Set servo Pin
+const int servoPin = 9;                                              //Servo Pin
   
-float Kp = 2.5;                                                      //Set PID gains
-float Ki = 0;                                                      
-float Kd = 1.1;                                                  
+float Kp_low = 2.5;                                                  //Set PID gains
+float Ki_low = 0.2;                                                      
+float Kd_low = 0.5; 
+
+float Kp_low = 5;                                                   
+float Ki_low = 0;                                                      
+float Kd_low = 2.5; 
+
 double Setpoint, Input, Output, ServoOutput;                                       
 
 
-PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);           //Initialize PID object, which is in the class PID.                                                                                                            
+PID myPID(&Input, &Output, &Setpoint, Kp_low, Ki_low, Kd_low, DIRECT);    //Initialize PID object, which is in the class PID.                                                                                                            
                                                                      
 Servo myServo;                                                       //Initialize Servo.
 
@@ -25,18 +30,26 @@ void setup() {
 
  
   myPID.SetMode(AUTOMATIC);                                          
-  myPID.SetOutputLimits(-80,80);                                     //Set Output limits to protect hardware
+  myPID.SetOutputLimits(-40,40);                                     //Set Output limits to protect hardware
 }
 
 void loop()
 {
  
-  Setpoint = 15;
+  Setpoint = 20;                                                     // Can be changed to any desired position
   Input = readPosition();                                            
  
+  double gap = abs(Setpoint - Input);
+  
+  if (gap < 2) {
+    myPID.SetTunings(Kp_low, Ki_low, Kd_low);
+  } else {
+    myPID.SetTunings(Kp_high, Ki_high, Kd_high);
+  }
+  
   myPID.Compute();                                                   //Get output
   
-  ServoOutput = 102+Output;                                          //CALIBRATE HERE !!!! (set number to anything for horizontal)
+  ServoOutput = 75 + Output;                                         //CALIBRATE HERE !!!! (set number to anything for horizontal)
   myServo.write(ServoOutput);                                        //Writes value of Output to servo
   
   
@@ -46,31 +59,30 @@ void loop()
       
 
 float readPosition() {
-  delay(40);                                                            //Prevent echo affecting output 
-  
-  
-const int pingPin = 7;
+  const int trigPin = 5;
+  const int echoPin = 6;
+  long duration, distance;
 
-long duration, cm;
-unsigned long now = millis();
-  pinMode(pingPin, OUTPUT);
-  digitalWrite(pingPin, LOW);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  
+  digitalWrite(trigPin, LOW);                                         //Clear trig pin
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
-  delayMicroseconds(5);
-  digitalWrite(pingPin, LOW);
+  
+  digitalWrite(trigPin, HIGH);                                        //Set trigpin high for 10 ms
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW); 
+  
+  duration = pulseIn(echoPin, HIGH);                                  //Get ultrasound wave travel time
 
 
-  pinMode(pingPin, INPUT);
-  duration = pulseIn(pingPin, HIGH);
-
-  cm = duration/(29*2);
-  
-  if(cm > 30)     // 30 cm is the maximum position for the ball
-  {cm=30;}
+  distance = duration * 0.034/2;
+    
+  if(distance > 30)                                                   //Set max distance
+  {distance = 30;}
   
   
-  Serial.println(cm);
+  Serial.println(distance);
   
-  return cm;                                          //Returns distance value.
+  return distance;                                                    //Returns distance value.
 }
