@@ -7,12 +7,12 @@ This is a portfolio of most of the project I had worked in the past years. All o
 A little bit more about myself:
 I dove into the field of automation and robotics in my senior year at Georgia Tech, which is the year most of the mechanical engineers started branching off into fields they are interested in after learning all the bascis. 
 
-##Classes I had taken concerning the topic:
-- #Mechatronics
-  - About integrating circuits, actuators and software
-  - Used MSP432 microcontroller for labs and projects, langauge is C99. 
-  - Concepts Involved: Communcation protocols (UART, I2C, SPI etc.), circuit design, PWM...
-- #Robotics
+## Classes I had taken concerning the topic:
+# - Mechatronics
+    - About integrating circuits, actuators and software
+    - Used MSP432 microcontroller for labs and projects, langauge is C99. 
+    - Concepts Involved: Communcation protocols (UART, I2C, SPI etc.), circuit design, PWM...
+- # Robotics
   - Forward and Reverse Kinematics
   - Avoiding singular configurations and problems of singular configurations
   - Labs using ROS and turtlebots
