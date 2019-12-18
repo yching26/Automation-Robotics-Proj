@@ -12,21 +12,29 @@ I dove into the field of automation and robotics in my senior year at Georgia Te
     - About integrating circuits, actuators and software
     - Used MSP432 microcontroller for labs and projects, langauge is C99. 
     - Concepts Involved: Communcation protocols (UART, I2C, SPI etc.), circuit design, PWM...
-- # Robotics
-  - Forward and Reverse Kinematics
-  - Avoiding singular configurations and problems of singular configurations
-  - Labs using ROS and turtlebots
-- #Intro to control system 
-  - Modelling system in state-space form
-  - Designing open and closed loop control
-  - Tuning PID controller with the help of methods such as root-locus
-- #Linear control system
-  - Learning more complex controllers such as LQR and LQG
-  - Designing both controllers and observers and combining them
-- #Advanced Control Implementation
-  - Learnt in depth control system such as LQR, Model-reference control, Input-Shaping
-  - Implement different control system on cranes and understand their limitations
-- #Machine Learning
-  - Running algorithms for supervised, unsupervised and reinforced learning
-- #Machine Vision
+# - Robotics
+    - Forward and Reverse Kinematics
+    - Avoiding singular configurations and problems of singular configurations
+    - Labs using ROS and turtlebots
+# - Intro to control system 
+    - Modelling system in state-space form
+    - Designing open and closed loop control
+    - Tuning PID controller with the help of methods such as root-locus
+# - Linear control system
+    - Learning more complex controllers such as LQR and LQG
+    - Designing both controllers and observers and combining them
+# - Advanced Control Implementation
+    - Learnt in depth control system such as LQR, Model-reference control, Input-Shaping
+    - Some insights in non-linear control such as Lyapunov stability
+     - Implement different control system on cranes and understand their limitations
+# - Machine Learning
+     - Running algorithms for supervised, unsupervised and reinforced learning
+# - Machine Vision
+     - Learning different methodology in recognizing features in photos such as edges, corners, lines
+     - Calibrating camera and real world frame to locate the location of the target object
+     - Implement methodologies such as hough transform, neural network, morphology etc. 
+     
+Upcoming classes in the following semester are planned to be:
+Advanced Mechatronics, Digital Control, Non-linear control
+and is expected to branch off into Electric Engineering to learn more about circuit design to solidify knowledge in mechatronics. 
   
